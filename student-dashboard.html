@@ -68,6 +68,8 @@
             color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
+            text-decoration: none; /* Remove underline */
+            cursor: pointer;
         }
 
         .card:hover {
@@ -88,6 +90,10 @@
 
         .card:nth-child(4) {
             background: #9b59b6;
+        }
+
+        .card:nth-child(5) {
+            background: #e74c3c;
         }
 
         h2 {
@@ -134,34 +140,41 @@
     <div class="main-content">
         <h1>Student Dashboard</h1>
         <div class="dashboard">
-            <div class="card">
+            <a href="query.html" class="card">
                 <h2>Ask a Query</h2>
                 <ul>
                     <li>Post your questions.</li>
                     <li>Get answers from mentors and peers.</li>
                 </ul>
-            </div>
-            <div class="card">
+            </a>
+            <a href="team.html" class="card">
                 <h2>Create a Team</h2>
                 <ul>
                     <li>Form project groups.</li>
                     <li>Collaborate on ideas together.</li>
                 </ul>
-            </div>
-            <div class="card">
+            </a>
+            <a href="find-members.html" class="card">
                 <h2>Find Team Members/Mentors</h2>
                 <ul>
                     <li>Search for skilled individuals.</li>
                     <li>Connect with experienced mentors.</li>
                 </ul>
-            </div>
-            <div class="card">
+            </a>
+            <a href="hackathons.html" class="card">
                 <h2>Trending Hackathons</h2>
                 <ul>
                     <li>Stay updated on events.</li>
                     <li>Participate and showcase your skills.</li>
                 </ul>
-            </div>
+            </a>
+            <a href="exclusive-resources.html" class="card">
+                <h2>Exclusive Resources</h2>
+                <ul>
+                    <li>Get access to notes personally written by our mentors</li>
+                    <li>Best for revisions</li>
+                </ul>
+            </a>
         </div>
         <div class="contact">
             <p>Need help? <a href="#">Contact Us</a></p>
