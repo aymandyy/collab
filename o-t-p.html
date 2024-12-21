@@ -127,7 +127,7 @@
         <h2>Verify Your Identity</h2>
         <p>Enter the OTP sent to your phone number.</p>
         <input type="text" id="otp" placeholder="Enter 6-digit code" maxlength="6">
-        <a href="student-profile-page.html"> <button onclick="verifyOTP()">Verify OTP</button> </a>
+        <button onclick="verifyOTP()">Verify OTP</button>
         <p class="resend" onclick="resendCode()">Resend Code</p>
         <p class="error" id="error">Invalid OTP. Please try again.</p>
     </div>
@@ -147,6 +147,8 @@
             } else {
                 error.style.display = 'none';
                 alert('OTP Verified!');
+                // Navigate to the next page
+                window.location.href = 'student-profile-page.html';
             }
         }
 
