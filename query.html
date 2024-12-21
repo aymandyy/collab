@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <style>
+    /* General reset */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+        background-color: #050605;
+        color: rgb(142, 131, 131);
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    /* Main Content */
+    main {
+        padding: 20px;
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Ensures content stays within the box */
+    }
+
+    /* Form Styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Adds space between form groups */
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    button {
+        background-color: #000000;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #f1f1f1;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+    }
+  </style>
+<header>
+  <h1>Submit Your Query</h1>
+</header>
+<main>
+  <form id="queryForm" action="/submit-query" method="POST">
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Your Query:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your query here..." required></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</main>
+<footer>
+  <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Updates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #423f3f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #edf3f8;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            width: 50px;
+        }
+
+        .filters input, .filters select {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 50px 0px 0px ;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .card p {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .card-buttons {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-buttons a {
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .more-details {
+            background-color: #0078d7;
+            color: white;
+        }
+
+        .seek-mentor {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .register {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .more-details:hover {
+            background-color: #005bb5;
+        }
+
+        .seek-mentor:hover {
+            background-color: #e0a800;
+        }
+
+        .register:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Latest Hackathons</h1>
+            <p>Stay updated with the latest hackathons!</p>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="searchInput" placeholder="Search by name...">
+            <select id="monthFilter">
+                <option value="">Filter by month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+
+        <div id="hackathon-cards"></div>
+    </div>
+
+    <script>
+        // Mock API response
+        const fetchHackathons = async () => {
+            return [
+                {
+                    name: "Genethon",
+                    prize: "$10,000",
+                    venue: "GGCT",
+                    detailsLink: "https://www.gyanotsav.com/genethon",
+                    registerLink: "https://www.gyanotsav.com/genethon",
+                    mentorLink: "mentor.html",
+                    month: "March"
+                },
+                {
+                    name: "S.I.H",
+                    prize: "$5,000",
+                    venue: "KCG College of Technology in Chennai",
+                    detailsLink: "https://www.sih.gov.in/",
+                    registerLink: "https://www.sih.gov.in/",
+                    mentorLink: "mentor.html",
+                    month: "June"
+                },
+                {
+                    name: "MSME",
+                    prize: "$3,000",
+                    venue: "JW Marriott in Aerocity, New Delhi",
+                    detailsLink: "https://unstop.com/greentech",
+                    registerLink: "https://unstop.com/register-greentech",
+                    mentorLink: "mentor.html",
+                    month: "December"
+                }
+            ];
+        };
+
+        // Function to render hackathon cards
+        const renderHackathons = async () => {
+            const hackathons = await fetchHackathons();
+            const cardsContainer = document.getElementById("hackathon-cards");
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const monthFilter = document.getElementById("monthFilter").value;
+
+            cardsContainer.innerHTML = ""; // Clear previous cards
+
+            hackathons
+                .filter(hackathon =>
+                    (!searchInput || hackathon.name.toLowerCase().includes(searchInput)) &&
+                    (!monthFilter || hackathon.month === monthFilter)
+                )
+                .forEach((hackathon) => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <h2>${hackathon.name}</h2>
+                        <p><strong>Prize:</strong> ${hackathon.prize}</p>
+                        <p><strong>Venue:</strong> ${hackathon.venue}</p>
+                        <p><strong>Month:</strong> ${hackathon.month}</p>
+                        <div class="card-buttons">
+                            <a href="${hackathon.detailsLink}" target="_blank" class="more-details">More Details</a>
+                            <a href="${hackathon.mentorLink}" target="_blank" class="seek-mentor">Seek Mentor</a>
+                            <a href="${hackathon.registerLink}" target="_blank" class="register">Register</a>
+                        </div>
+                    `;
+
+                    cardsContainer.appendChild(card);
+                });
+        };
+
+        document.getElementById("searchInput").addEventListener("input", renderHackathons);
+        document.getElementById("monthFilter").addEventListener("change", renderHackathons);
+
+        document.addEventListener("DOMContentLoaded", renderHackathons);
+    </script>
+</body>
+</html>
