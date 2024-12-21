@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Dashboard | Collab Sync</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background: #1e1e1e;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            color: teal;
+        }
+
+        .navbar a {
+            color: #c0c0c0;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #00cccc;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+        }
+
+        /* Dashboard Grid */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Feature Cards */
+        .card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            opacity: 0;
+            animation: fadeInCard 1s ease-in-out forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        .card:nth-child(4) { animation-delay: 0.8s; }
+        .card:nth-child(5) { animation-delay: 1s; }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 255, 255, 0.3);
+            border: 2px solid teal;
+        }
+
+        .card img {
+            width: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            background: teal;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .card button:hover {
+            background: #00cccc;
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h2 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h1>Collab Sync</h1>
+        <div>
+            <a href="#">Dashboard</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h2>Welcome Back, Mentor!</h2>
+        <p>Here's your personalized dashboard to manage and inspire.</p>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard">
+        <!-- Card 1: Your Community -->
+        <div class="card">
+            <img src="https://img.icons8.com/ios-filled/50/00cccc/conference-call.png" alt="Community Icon">
+            <h3>Your Community</h3>
+            <p>Manage and engage with your mentoring groups and forums.</p>
+            <button>Explore</button>
+        </div>
+
+        <!-- Card 2: Your Students -->
+        <div class="card">
+            <img src="https://img.icons8.com/ios-filled/50/00cccc/students.png" alt="Students Icon">
+            <h3>Your Students</h3>
+            <p>Track and support your assigned mentees effectively.</p>
+            <button>View More</button>
+        </div>
+
+        <!-- Card 3: Interact with Mentees -->
+        <div class="card">
+            <img src="https://img.icons8.com/ios-filled/50/00cccc/speech-bubble.png" alt="Interact Icon">
+            <h3>Interact with Mentees</h3>
+            <p>Initiate or schedule discussions with your mentees.</p>
+            <button>Interact</button>
+        </div>
+
+        <!-- Card 4: Submit/Share Your Resources -->
+        <div class="card">
+            <img src="https://img.icons8.com/ios-filled/50/00cccc/share.png" alt="Resources Icon">
+            <h3>Submit/Share Resources</h3>
+            <p>Upload and share learning materials with your mentees.</p>
+            <button>Submit</button>
+        </div>
+
+        <!-- Card 5: Trending Hackathons -->
+        <div class="card">
+            <img src="https://img.icons8.com/ios-filled/50/00cccc/idea.png" alt="Hackathon Icon">
+            <h3>Trending Hackathons</h3>
+            <p>Discover upcoming and popular hackathons for mentees.</p>
+            <button>View More</button>
+        </div>
+    </div>
+</body>
+</html>
