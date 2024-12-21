@@ -3,142 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentor Dashboard | Collab Sync</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Mentor Hackathon Dashboard</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #121212;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
+            animation: fadeIn 1s ease-out;
         }
 
-        /* Navigation Bar */
-        .navbar {
-            width: 100%;
-            position: sticky;
-            top: 0;
-            background: #1e1e1e;
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .navbar h1 {
-            font-size: 1.5rem;
-            color: teal;
-        }
-
-        .navbar a {
-            color: #c0c0c0;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #00cccc;
-        }
-
-        /* Header Section */
         .header {
             text-align: center;
-            margin-top: 30px;
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-in-out;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
         }
 
-        .header h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .header h1 {
+            color: #ffffff;
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 1.2rem;
-            color: #c0c0c0;
+            color: #b0b0b0;
         }
 
-        /* Dashboard Grid */
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        /* Feature Cards */
+        .filters input, .filters select {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+            transition: box-shadow 0.3s ease, transform 0.2s;
+        }
+
+        .filters input:focus, .filters select:focus {
+            box-shadow: 0 0 8px #00ff88;
+            transform: scale(1.05);
+            outline: none;
+        }
+
         .card {
-            background: #1e1e1e;
-            border-radius: 15px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            background: #1a1a1a;
             padding: 20px;
-            text-align: center;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
-            animation: fadeInCard 1s ease-in-out forwards;
+            animation: fadeInCard 1s ease-out forwards;
         }
 
-        .card:nth-child(1) { animation-delay: 0.2s; }
-        .card:nth-child(2) { animation-delay: 0.4s; }
-        .card:nth-child(3) { animation-delay: 0.6s; }
-        .card:nth-child(4) { animation-delay: 0.8s; }
-        .card:nth-child(5) { animation-delay: 1s; }
+        .card:nth-child(even) {
+            animation-delay: 0.2s;
+        }
 
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(0, 255, 255, 0.3);
-            border: 2px solid teal;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+            border-color: #00ff88;
         }
 
-        .card img {
-            width: 50px;
-            margin-bottom: 15px;
+        .card h2 {
+            margin: 0;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
         }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .card h2 i {
+            margin-right: 10px;
+            color: #00ff88;
         }
 
         .card p {
-            font-size: 1rem;
+            margin: 10px 0;
             color: #c0c0c0;
-            margin-bottom: 20px;
         }
 
-        .card button {
-            background: teal;
-            color: #ffffff;
-            padding: 10px 15px;
-            border: none;
+        .card-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .card-buttons a {
+            text-decoration: none;
+            padding: 10px 16px;
             border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            text-align: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            flex-grow: 1;
         }
 
-        .card button:hover {
-            background: #00cccc;
-            transform: scale(1.1);
+        .find-teams {
+            background-color: #444;
+            color: #e0e0e0;
         }
 
-        /* Animations */
+        .provide-guidance {
+            background-color: #666;
+            color: #e0e0e0;
+        }
+
+        .mentor-register {
+            background-color: #00ff88;
+            color: #121212;
+        }
+
+        .find-teams:hover, .provide-guidance:hover, .mentor-register:hover {
+            transform: scale(1.05);
+            background-color: #ffffff;
+            color: #121212;
+        }
+
         @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
@@ -149,85 +162,96 @@
             }
         }
 
-        @keyframes fadeInCard {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header h2 {
-                font-size: 2rem;
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
             }
-
-            .header p {
-                font-size: 1rem;
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <h1>Collab Sync</h1>
-        <div>
-            <a href="#">Dashboard</a>
-            <a href="#">Settings</a>
-            <a href="#">Logout</a>
+    <div class="container">
+        <div class="header">
+            <h1>Hackathons for Mentors</h1>
+            <p>Explore opportunities to guide and support participants.</p>
         </div>
+
+        <div class="filters">
+            <input type="text" id="searchInput" placeholder="Search hackathons...">
+            <select id="monthFilter">
+                <option value="">Filter by month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+
+        <div id="hackathon-cards"></div>
     </div>
 
-    <!-- Header Section -->
-    <div class="header">
-        <h2>Welcome Back, Mentor!</h2>
-        <p>Here's your personalized dashboard to manage and inspire.</p>
-    </div>
+    <script>
+        const fetchHackathons = async () => {
+            return [
+                { name: "Genethon", prize: "$10,000", venue: "Gyan Ganga College", month: "March" },
+                { name: "S.I.H", prize: "$5,000", venue: "KCG College", month: "June" },
+                { name: "MSME", prize: "$3,000", venue: "JW Marriott", month: "December" }
+            ];
+        };
 
-    <!-- Dashboard Grid -->
-    <div class="dashboard">
-        <!-- Card 1: Your Community -->
-        <div class="card">
-            <img src="https://img.icons8.com/ios-filled/50/00cccc/conference-call.png" alt="Community Icon">
-            <h3>Your Community</h3>
-            <p>Manage and engage with your mentoring groups and forums.</p>
-            <button>Explore</button>
-        </div>
+        const renderHackathons = async () => {
+            const hackathons = await fetchHackathons();
+            const container = document.getElementById("hackathon-cards");
+            const search = document.getElementById("searchInput").value.toLowerCase();
+            const filter = document.getElementById("monthFilter").value;
 
-        <!-- Card 2: Your Students -->
-        <div class="card">
-            <img src="https://img.icons8.com/ios-filled/50/00cccc/students.png" alt="Students Icon">
-            <h3>Your Students</h3>
-            <p>Track and support your assigned mentees effectively.</p>
-            <button>View More</button>
-        </div>
+            container.innerHTML = "";
 
-        <!-- Card 3: Interact with Mentees -->
-        <div class="card">
-            <img src="https://img.icons8.com/ios-filled/50/00cccc/speech-bubble.png" alt="Interact Icon">
-            <h3>Interact with Mentees</h3>
-            <p>Initiate or schedule discussions with your mentees.</p>
-            <button>Interact</button>
-        </div>
+            hackathons.filter(h => (!search || h.name.toLowerCase().includes(search)) && (!filter || h.month === filter))
+                .forEach(h => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                        <h2><i class="fa-solid fa-rocket"></i>${h.name}</h2>
+                        <p><strong>Prize:</strong> ${h.prize}</p>
+                        <p><strong>Venue:</strong> ${h.venue}</p>
+                        <p><strong>Month:</strong> ${h.month}</p>
+                        <div class="card-buttons">
+                            <a href="#" class="find-teams">Find Teams</a>
+                            <a href="#" class="provide-guidance">Provide Guidance</a>
+                            <a href="#" class="mentor-register">Register as Mentor</a>
+                        </div>`;
+                    container.appendChild(card);
+                });
+        };
 
-        <!-- Card 4: Submit/Share Your Resources -->
-        <div class="card">
-            <img src="https://img.icons8.com/ios-filled/50/00cccc/share.png" alt="Resources Icon">
-            <h3>Submit/Share Resources</h3>
-            <p>Upload and share learning materials with your mentees.</p>
-            <button>Submit</button>
-        </div>
-
-        <!-- Card 5: Trending Hackathons -->
-        <div class="card">
-            <img src="https://img.icons8.com/ios-filled/50/00cccc/idea.png" alt="Hackathon Icon">
-           <a href="mentor trending.html"> <h3>Trending Hackathons</h3></a>
-            <p>Discover upcoming and popular hackathons for mentees.</p>
-            <button>View More</button>
-        </div>
-    </div>
+        document.getElementById("searchInput").addEventListener("input", renderHackathons);
+        document.getElementById("monthFilter").addEventListener("change", renderHackathons);
+        document.addEventListener("DOMContentLoaded", renderHackathons);
+    </script>
 </body>
 </html>
